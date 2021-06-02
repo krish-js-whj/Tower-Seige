@@ -8,7 +8,8 @@ var holder,ball,ground;
 var stand1,stand2;
 var ball;
 var slingShot;
-var polygon_img;
+var polygon_img,score=0;
+var gameState="notreleased"
 function preload(){
   polygon_img=loadImage("polygon.png");
 }
@@ -18,47 +19,18 @@ function setup() {
   world = engine.world;
   Engine.run(engine);
   ground = new Ground();
-  polygon=new Bodies.circle(50,20,2);
-  World.add(world,polygon);
-  slingShot=new SlingShot(this.polygon,{x:100,y:200});
-  imageMode(CENTER);
-  image(polygon_img,polygon.position.x,polygon.position.y,40,40);
   stand1 = new Stand(390,300,250,10);
   stand2 = new Stand(700,200,200,10);
- 
-  //level one
-  block1 = new Block(300,275,30,40);
-  block2 = new Block(330,275,30,40);
-  block3 = new Block(360,275,30,40);
-  block4 = new Block(390,275,30,40);
-  block5 = new Block(420,275,30,40);
-  block6 = new Block(450,275,30,40);
-  block7 = new Block(480,275,30,40);
-  //level two
-  block8 = new Block(330,235,30,40);
-  block9 = new Block(360,235,30,40);
-  block10 = new Block(390,235,30,40);
-  block11 = new Block(420,235,30,40);
-  block12 = new Block(450,235,30,40);
-  //level three
-  block13 = new Block(360,195,30,40);
-  block14 = new Block(390,195,30,40);
-  block15 = new Block(420,195,30,40);
-  //top
-  block16 = new Block(390,155,30,40);
- 
-
+  blockSpawn()
+  console.log(block1.body.angle)
 }
 function draw() {
   background(56,44,44); 
- 
   textSize(20);
   fill("lightyellow");
-  
-
   ground.display();
   stand1.display();
-  
+  stand2.display();
   strokeWeight(2);
   stroke(15);
   fill("skyblue");
@@ -80,16 +52,168 @@ function draw() {
   block14.display();
   block15.display();
   fill("grey");
-  block16.display();
-
-
+  block16.display(); 
+  fill("skyblue");
+  block17.display();
+  block18.display();
+  block19.display();
+  block20.display();
+  block21.display();
+  fill("turquoise");
+  block22.display();
+  block23.display();
+  block24.display();
+  fill("pink")
+  block25.display();
+  fill("gold");
   slingShot.display();
-}
+  block1.score();
+  block2.score();
+  block3.score();
+  block4.score();
+  block5.score();
+  block6.score();
+  block7.score();
+  block8.score();
+  block9.score();
+  block10.score();
+  block11.score();
+  block12.score();
+  block13.score();
+  block14.score();
+  block15.score();
+  block16.score(); 
+  block17.score();
+  block18.score();
+  block19.score();
+  block20.score();
+  block21.score();
+  block22.score();
+  block23.score();
+  block24.score();
+  block25.score();
+imageMode(CENTER);
+  image(polygon_img,polygon.position.x,polygon.position.y,40,40);
+  text("Score: "+score,100,50)
+  if (gameState=="released"){
+      text("Refresh",800,350)}
+ }
   function mouseDragged(){
+    if (gameState=="notreleased"){
   Matter.Body.setPosition(this.polygon,{x:mouseX,y:mouseY});
 }
-
+  }
 function mouseReleased(){
   slingShot.fly();
-
+  gameState="released"
+   
 }
+function blockSpawn(){
+  //level one
+  block1 = new Block(300,275,30,40);
+  block2 = new Block(330,275,30,40);
+  block3 = new Block(360,275,30,40);
+  block4 = new Block(390,275,30,40);
+  block5 = new Block(420,275,30,40);
+  block6 = new Block(450,275,30,40);
+  block7 = new Block(480,275,30,40);
+  //level two
+  block8 = new Block(330,235,30,40);
+  block9 = new Block(360,235,30,40);
+  block10 = new Block(390,235,30,40);
+  block11 = new Block(420,235,30,40);
+  block12 = new Block(450,235,30,40);
+  //level three
+  block13 = new Block(360,195,30,40);
+  block14 = new Block(390,195,30,40);
+  block15 = new Block(420,195,30,40);
+  //top
+  block16 = new Block(390,155,30,40);
+  //set 2 for second stand
+  //level one
+  block17 = new Block(630,175,30,40);
+  block18 = new Block(660,175,30,40);
+  block19 = new Block(690,175,30,40);
+  block20 = new Block(720,175,30,40);
+  block21 = new Block(750,175,30,40);
+  //level two
+  block22 = new Block(660,135,30,40);
+  block23 = new Block(690,135,30,40);
+  block24 = new Block(720,135,30,40);
+  //top
+  block25 = new Block(690,95,30,40);
+
+   polygon=new Bodies.circle(50,20,20);
+   World.add(world,polygon);
+ slingShot=new SlingShot(this.polygon,{x:100,y:200});
+}
+//function keyPressed(){
+  //if (keyCode===82){
+ // Matter.Body.setStatic(block1.body, true);
+ // Matter.Body.setStatic(block2.body, true);
+ // Matter.Body.setStatic(block3.body, true);
+ // Matter.Body.setStatic(block4.body, true);
+  //Matter.Body.setStatic(block5.body, true);
+  //Matter.Body.setStatic(block6.body, true);
+ /// Matter.Body.setStatic(block7.body, true);
+  //Matter.Body.setStatic(block8.body, true);
+ // /Matter.Body.setStatic(block9.body, true);
+ // Matter.Body.setStatic(block11.body, true);
+//  Matter.Body.setStatic(block12.body, true);
+ // Matter.Body.setStatic(block13.body, true);
+  //Matter.Body.setStatic(block14.body, true);
+ // Matter.Body.setStatic(block15.body, true);
+ // Matter.Body.setStatic(block16.body, true);
+ // Matter.Body.setPosition(block1.body,{x: 300,y: 275});
+ // Matter.Body.setPosition(block1.body,{x:330,y:275});
+  //Matter.Body.setPosition(block3.body,{x:360,y:275});
+ // Matter.Body.setPosition(block4.body,{x:390,y:275});
+ // Matter.Body.setPosition(block5.body,{x:420,y:275});
+ // Matter.Body.setPosition(block6.body,{x:450,y:275});
+ // Matter.Body.setPosition(block7.body,{x:480,y:275});
+  //Matter.Body.setPosition(block8.body,{x:330,y:235});
+ // Matter.Body.setPosition(block9.body,{x:360,y:235});
+ // Matter.Body.setPosition(block10.body,{x:390,y:235});
+  //Matter.Body.setPosition(block11.body,{x:420,y:235});
+ // Matter.Body.setPosition(block12.body,{x:450,y:235});
+//  Matter.Body.setPosition(block13.body,{x:360,y:195});
+  //Matter.Body.setPosition(block14.body,{x:390,y:195});
+  //Matter.Body.setPosition(block15.body,{x:420,y:195});
+  //Matter.Body.setPosition(block16.body,{x:390,y:155});
+ // Matter.Body.setStatic(block1.body, false);
+ // Matter.Body.setStatic(block2.body, false);
+ // Matter.Body.setStatic(block3.body, false);
+ // Matter.Body.setStatic(block4.body, false);
+//Matter.Body.setStatic(block5.body, false);
+ // Matter.Body.setStatic(block6.body, false);
+//Matter.Body.setStatic(block7.body, false);
+  //Matter.Body.setStatic(block8.body, false);
+ // Matter.Body.setStatic(block9.body, false);
+//Matter.Body.setStatic(block10.body, false);
+ // Matter.Body.setStatic(block11.body, false);
+ // Matter.Body.setStatic(block12.body, false);
+  //Matter.Body.setStatic(block13.body, false);
+  //Matter.Body.setStatic(block14.body, false);
+  //Matter.Body.setStatic(block15.body, false);
+ // Matter.Body.setStatic(block16.body, false);
+ // fill("skyblue");
+  //block1.display();
+ // block2.display();
+ // block3.display();
+ // block4.display();
+ // block5.display();
+ // block6.display();
+ // block7.display();
+  //fill("pink");
+////  block8.display();
+  //block9.display();
+ //// block10.display();
+//  block11.display();
+ //// block12.display();
+ // fill("turquoise");
+ // block13.display();
+ // block14.display();
+ // block15.display();
+ // fill("grey");
+ // block16.display();
+ // }}
